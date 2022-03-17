@@ -5,7 +5,7 @@ from skimage.util import random_noise
 import pytesseract
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-img = cv2.imread(r"F:\projects\Im-Proc-Proj\Project\testimg.jpeg",cv2.IMREAD_COLOR)
+img = cv2.imread(r"F:\projects\Im-Proc-Proj\Project\testimg2.jpeg",cv2.IMREAD_COLOR)
 width = 600 # keep original width
 height = 440
 dim = (width, height)
@@ -63,7 +63,6 @@ contours = cv2.findContours(edged.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE
 contours = imutils.grab_contours(contours)
 contours = sorted(contours, key = cv2.contourArea, reverse = True)[:10]
 screenCnt = None
-
 
 for c in contours:
     
