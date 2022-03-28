@@ -5,7 +5,8 @@ from skimage.util import random_noise
 import pytesseract
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-img = cv2.imread(r"F:\projects\Im-Proc-Proj\Project\testimg2.jpeg",cv2.IMREAD_COLOR)
+# img = cv2.imread(r"F:\projects\Im-Proc-Proj\Project\testimg1.jpeg",cv2.IMREAD_COLOR)
+img = cv2.imread(r"F:\projects\Im-Proc-Proj\Project\testimg1.jpg",cv2.IMREAD_COLOR)
 width = 600 # keep original width
 height = 440
 dim = (width, height)
@@ -60,7 +61,6 @@ for c in contours:
         screenCnt = approx
         break
 
-# checking if there is no contour 
 if screenCnt is None:
     detected = 0
     print ("No contour detected")
@@ -70,12 +70,13 @@ else:
 if detected == 1:
     cv2.drawContours(img, [screenCnt], -1, (0, 0, 255), 3)
 
+
 # The mask propirty 
 mask = np.zeros(gray.shape,np.uint8)
 new_image = cv2.drawContours(mask,[screenCnt],0,255,-1,)
 new_image = cv2.bitwise_and(img,img,mask=mask)
 
-cv2.imshow('Masked img',new_image)
+cv2.imshow('Masked img',new_image)  
 
 # croped image
 (x, y) = np.where(mask == 255)
